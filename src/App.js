@@ -1,8 +1,22 @@
 import TodoFeature from "./features/Todo";
 import NotFound from "./components/NotFound";
 import { Route, Routes, Link, NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import productApi from "./api/productApi";
 
 function App() {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const params = {
+        _limit: 10,
+      };
+      const productList = await productApi.getAll(params);
+      console.log(productList);
+    }
+
+    fetchProducts();
+  }, [])
+
   return (
     <div className="App">
       <p>
